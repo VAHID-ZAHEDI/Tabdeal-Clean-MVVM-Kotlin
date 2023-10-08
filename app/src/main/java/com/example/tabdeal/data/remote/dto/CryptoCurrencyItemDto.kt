@@ -1,5 +1,6 @@
 package com.example.tabdeal.data.remote.dto
 
+import com.example.tabdeal.domain.model.CryptoCurrencyEntity
 import com.example.tabdeal.domain.model.CryptoCurrencyItem
 import com.google.gson.annotations.SerializedName
 
@@ -40,6 +41,18 @@ data class CryptoCurrencyItemDto(
 
 fun CryptoCurrencyItemDto.toCryptoCurrencyItem(): CryptoCurrencyItem {
     return CryptoCurrencyItem(
+        id = id,
+        nameFa = nameFa,
+        enName = name,
+        price = priceInUsdt,
+        symbol = symbol
+    )
+
+
+}
+fun CryptoCurrencyItemDto.toCryptoCurrencyEntity(): CryptoCurrencyEntity {
+    return CryptoCurrencyEntity(
+        id = id,
         nameFa = nameFa,
         enName = name,
         price = priceInUsdt,
