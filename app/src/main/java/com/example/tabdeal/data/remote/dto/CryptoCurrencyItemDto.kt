@@ -1,8 +1,9 @@
 package com.example.tabdeal.data.remote.dto
 
+import com.example.tabdeal.domain.model.CryptoCurrencyItem
 import com.google.gson.annotations.SerializedName
 
-data class CryptoCurrncyItem(
+data class CryptoCurrencyItemDto(
     @SerializedName("symbol")
     val symbol: String = "",
 
@@ -36,3 +37,14 @@ data class CryptoCurrncyItem(
     @SerializedName("id")
     val id: Int = 0
 )
+
+fun CryptoCurrencyItemDto.toCryptoCurrencyItem(): CryptoCurrencyItem {
+    return CryptoCurrencyItem(
+        nameFa = nameFa,
+        enName = name,
+        price = priceInUsdt,
+        symbol = symbol
+    )
+
+
+}
