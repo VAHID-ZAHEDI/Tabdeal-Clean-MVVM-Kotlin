@@ -13,7 +13,6 @@ import com.example.tabdeal.data.remote.dto.CryptoCurrencyItemDto
 import com.example.tabdeal.data.remote.dto.toCryptoCurrencyEntity
 import com.example.tabdeal.domain.CryptoRepository
 import com.example.tabdeal.domain.model.CryptoCurrencyEntity
-import com.example.tabdeal.presentation.adapter.CryptoPagingSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.onEach
@@ -40,7 +39,8 @@ class CryptoRepositoryImpl @Inject constructor(
         return Pager(
             config = PagingConfig(pageSize = 20),
             pagingSourceFactory = {
-                CryptoPagingSource(cryptoCurrencyDao)
+//                CryptoPagingSource(cryptoCurrencyDao)
+                cryptoCurrencyDao.getAllCryptoData()
             }
         ).flow
 

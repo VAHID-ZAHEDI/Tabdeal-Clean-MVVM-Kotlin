@@ -1,5 +1,6 @@
 package com.example.tabdeal.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.example.tabdeal.databinding.ActivityMainBinding
 import com.example.tabdeal.presentation.adapter.CryptoCurrencyListAdapter
 import com.example.tabdeal.util.Status
 import dagger.hilt.android.AndroidEntryPoint
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.collectLatest
@@ -21,6 +23,11 @@ class MainActivity : AppCompatActivity() {
     val cryptoCurrencyListAdapter = CryptoCurrencyListAdapter()
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel: MainViewModel by viewModels()
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

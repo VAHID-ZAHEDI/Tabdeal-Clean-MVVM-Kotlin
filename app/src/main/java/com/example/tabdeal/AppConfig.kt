@@ -2,7 +2,6 @@ package com.example.tabdeal
 
 import android.app.Application
 import android.content.Context
-import android.view.LayoutInflater
 import dagger.hilt.android.HiltAndroidApp
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
@@ -21,7 +20,7 @@ class AppConfig :Application() {
                     CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
                             .setDefaultFontPath("fonts/IRANSans(FaNum)_Medium.ttf")
-                            .setFontAttrId(R.attr.fontPath)
+                            .setFontAttrId(io.github.inflationx.calligraphy3.R.attr.fontPath)
                             .build()
                     )
                 )
