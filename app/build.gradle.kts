@@ -18,6 +18,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled =true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -99,5 +100,8 @@ dependencies {
 
     debugImplementation ("com.github.chuckerteam.chucker:library:4.0.0")
     implementation ("io.github.inflationx:calligraphy3:3.1.1")
+//    implementation (":io.github.inflationx:viewpump:2.0.3")
+    implementation ("androidx.multidex:multidex:2.0.1")
+
 
 }

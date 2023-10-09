@@ -24,9 +24,10 @@ class CryptoCurrencyListAdapter :
     }
 
     override fun onBindViewHolder(holder: CryptoCurrencyViewHolder, position: Int) {
-        Log.d("iuiiuiued", "onCreate: ${getItem(position)?.nameFa}")
 
         holder.binding.nameTextView.text = getItem(position)?.nameFa
+        holder.binding.symbolTextView.text=getItem(position)?.symbol
+        holder.binding.priceTextView.text=getItem(position)?.price
     }
 
 

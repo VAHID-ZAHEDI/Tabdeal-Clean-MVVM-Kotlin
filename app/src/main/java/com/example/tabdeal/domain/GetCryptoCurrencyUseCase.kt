@@ -21,7 +21,7 @@ class GetCryptoCurrencyUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<PagingData<CryptoCurrencyEntity>>> = channelFlow  {
         try {
-//            cryptoRepository.getCryptoCurrencyListFromBackend()
+            cryptoRepository.getCryptoCurrencyListFromBackend()
             send(Resource.loading())
 
             cryptoRepository.getCryptoFromRoom().collectLatest {

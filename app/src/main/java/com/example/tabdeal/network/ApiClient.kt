@@ -46,7 +46,7 @@ object ApiClient {
 
         client.readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
-            .addInterceptor(ChuckerInterceptor(AppConfig.getMyApplicationContext()))
+//            .addInterceptor(ChuckerInterceptor(AppConfig.getMyApplicationContext()))
             .connectTimeout(30, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
 
