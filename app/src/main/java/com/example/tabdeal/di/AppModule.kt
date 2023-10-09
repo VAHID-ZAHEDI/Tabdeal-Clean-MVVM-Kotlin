@@ -34,6 +34,7 @@ class AppModule {
             "appDatabase"
         )
             .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
             .getCryptoCurrencyDao()
     }

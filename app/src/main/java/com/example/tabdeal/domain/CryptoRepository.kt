@@ -1,5 +1,6 @@
 package com.example.tabdeal.domain
 
+import androidx.paging.PagedList
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import com.example.tabdeal.data.remote.dto.CryptoCurrencyItemDto

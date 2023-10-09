@@ -1,5 +1,8 @@
 package com.example.tabdeal.data
 
+import android.util.Log
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -10,8 +13,10 @@ import com.example.tabdeal.data.remote.dto.CryptoCurrencyItemDto
 import com.example.tabdeal.data.remote.dto.toCryptoCurrencyEntity
 import com.example.tabdeal.domain.CryptoRepository
 import com.example.tabdeal.domain.model.CryptoCurrencyEntity
-import com.example.tabdeal.presentation.adapter.CryptoCurrencyDataPagingSource
+import com.example.tabdeal.presentation.adapter.CryptoPagingSource
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class CryptoRepositoryImpl @Inject constructor(
@@ -32,11 +37,14 @@ class CryptoRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCryptoFromRoom(): Flow<PagingData<CryptoCurrencyEntity>> {
-        val pagingConfig = PagingConfig(pageSize = 20)
         return Pager(
-            config = pagingConfig,
-            pagingSourceFactory = { cryptoCurrencyDao.getAllCryptoData() }
+            config = PagingConfig(pageSize = 20),
+            pagingSourceFactory = {
+                CryptoPagingSource(cryptoCurrencyDao)
+            }
         ).flow
+
+
     }
 
 //    fun getCryptoData(
