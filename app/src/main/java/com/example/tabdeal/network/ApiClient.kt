@@ -1,6 +1,12 @@
 package com.example.tabdeal.network
 
 
+import android.app.Application
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
+import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.example.tabdeal.AppConfig
+import com.example.tabdeal.data.remote.MainApiService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -31,7 +37,7 @@ object ApiClient {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit? {
+    fun provideRetrofit(): MainApiService {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val gson = GsonBuilder()
@@ -40,6 +46,7 @@ object ApiClient {
 
         client.readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(ChuckerInterceptor(AppConfig.getMyApplicationContext()))
             .connectTimeout(30, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
 
@@ -48,8 +55,9 @@ object ApiClient {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+
             .client(client.build())
-            .build()
+            .build().create(MainApiService::class.java)
     }
 
 
